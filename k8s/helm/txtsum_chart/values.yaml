@@ -1,4 +1,7 @@
 image:
   repository: datdt185/text_summarization
-  tag: "v1.0.0"
-  pullPolicy: Always
+  tag: "v1.0.1"
+  pullPolicy: IfNotPresent
+
+env:
+  name: dev
