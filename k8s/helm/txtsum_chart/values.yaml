@@ -1,0 +1,4 @@
+image:
+  repository: datdt185/text_summarization
+  tag: "v1.0.0"
+  pullPolicy: Always
