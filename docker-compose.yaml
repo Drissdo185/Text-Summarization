@@ -13,7 +13,7 @@ services:
     ports:
       - '30000:30000'
     # And set the image name
-    image: datdt185/textsummarization:v1.0.0
+    image: datdt185/textsummarization:v1.0.1
 
 
 
@@ -32,4 +32,4 @@ services:
     ports:
       - '30001:30000'
     # And set the image name
-    image: datdt185/textsummarization:v1.0.0
+    image: datdt185/textsummarization:v1.0.1

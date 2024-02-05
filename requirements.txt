@@ -5,3 +5,4 @@ loguru==0.7.0
 python-multipart==0.0.6
 fastapi==0.96.0
 uvicorn[standard]==0.22.0
+gradio==2.3.6
