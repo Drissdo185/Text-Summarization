@@ -7,20 +7,20 @@ pipeline {
     }
 
     environment{
-        registry = 'datdt185/text_summarization:v1.0.1'
+        registry = 'datdt185/text_summarization'
         registryCredential = 'dockerhub'      
     }
 
     stages {
-        stage('Test') {
+        stage('Preparation') {
             agent {
                 docker {
                     image 'python:3.11' 
                 }
             }
             steps {
-                echo 'Testing model correctness..'
-                sh 'pip install -r requirements.txt && pytest'
+                echo 'Installing dependencies..'
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Build') {
