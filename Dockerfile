@@ -8,8 +8,6 @@ COPY ./main.py /app
 
 COPY ./requirements.txt /app
 
-COPY ./model /app
-
 COPY ./k8s /app
 
 EXPOSE 30000
