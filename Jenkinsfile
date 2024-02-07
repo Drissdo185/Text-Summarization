@@ -12,17 +12,6 @@ pipeline {
     }
 
     stages {
-        stage('Preparation') {
-            agent {
-                docker {
-                    image 'python:3.11' 
-                }
-            }
-            steps {
-                echo 'Installing dependencies..'
-                sh 'pip install -r requirements.txt'
-            }
-        }
         stage('Build') {
             steps {
                 script {
