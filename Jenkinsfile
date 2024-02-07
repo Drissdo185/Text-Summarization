@@ -26,7 +26,7 @@ pipeline {
                 }
             }  
         }
-    stage('Deploy to Google Kubernetes Engine') {
+        stage('Deploy to Google Kubernetes Engine') {
             agent {
                 kubernetes {
                     containerTemplate {
@@ -37,10 +37,10 @@ pipeline {
             }
             steps {
                 script {
-                    steps
                     container('helm') {
                         sh("helm upgrade --install app --set image.repository=${registry} \
                         --set image.tag=v1.${BUILD_NUMBER} ./k8s/helm_charts/txtsum_chart --namespace model-serving")
+                    }
                 }
             }
         }        
