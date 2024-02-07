@@ -8,7 +8,7 @@ pipeline {
 
     environment{
         registry = 'datdt185/text_summarization'
-        registryCredential = 'docker'      
+        registryCredential = 'dockerhub'      
     }
 
     stages {
