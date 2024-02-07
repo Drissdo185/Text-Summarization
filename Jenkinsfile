@@ -8,7 +8,7 @@ pipeline {
 
     environment{
         registry = 'datdt185/text_summarization'
-        registryCredential = 'dockerhub-credential'      
+        registryCredential = 'docker'      
     }
 
     stages {
@@ -17,21 +17,15 @@ pipeline {
                 script {
                     echo 'Building image for deployment..'
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-
-                    // Use Jenkins credentials
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credential', usernameVariable: 'datdt185', passwordVariable: 'datdeptraivl123')]) {
-                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin https://index.docker.io/v1/"
-                    }
-
+                    
                     echo 'Pushing image to dockerhub..'
-                    docker.withRegistry( 'https://index.docker.io/v1/', 'my-docker-hub-creds' ) {
+                    docker.withRegistry( '', registryCredential ) {
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
                 }
             }  
         }
-    }
         stage('Deploy') {
             steps {
                 echo 'Deploying models..'
