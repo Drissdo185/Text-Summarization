@@ -32,6 +32,7 @@ pipeline {
                 script {
                     
                     sh "docker pull ${registry}:${BUILD_NUMBER}"
+                    sh 'pip install -r requirements.txt'
 
                     
                     dir('k8s/helm/txtsum') {
