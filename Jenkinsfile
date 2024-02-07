@@ -32,7 +32,12 @@ pipeline {
                 script {
                     
                     sh "docker pull ${registry}:${BUILD_NUMBER}"
-                    sh 'pip install -r requirements.txt'
+                    
+                    echo 'Installing Python and pip..'
+                    sh 'apt-get update && apt-get install -y python3 python3-pip'
+                    
+                    echo 'Installing Python dependencies..'
+                    sh 'pip3 install -r requirements.txt'
 
                     
                     dir('k8s/helm/txtsum') {
