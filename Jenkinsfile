@@ -26,25 +26,24 @@ pipeline {
                 }
             }  
         }
-    stage('Deploy') {
-            steps {
-                echo 'Deploying models..'
-                script {
-                    
-                    sh "docker pull ${registry}:${BUILD_NUMBER}"
-                    
-                    echo 'Installing Python and pip..'
-                    sh 'apt-get update && apt-get install -y python3 python3-pip'
-                    
-                    echo 'Installing Python dependencies..'
-                    sh 'pip3 install -r requirements.txt'
-
-                    
-                    dir('k8s/helm/txtsum') {
-                        sh 'helm upgrade --install txtsum .'
+    stage('Deploy to Google Kubernetes Engine') {
+            agent {
+                kubernetes {
+                    containerTemplate {
+                        name 'gracious_mayer' // Name of the container to be used for helm upgrade
+                        image 'datdt185/helm' // The image containing helm
                     }
                 }
             }
-        }   
+            steps {
+                script {
+                    steps
+                    container('helm') {
+                        sh("helm upgrade --install app --set image.repository=${registry} \
+                        --set image.tag=v1.${BUILD_NUMBER} ./helm_charts/app --namespace model-serving")
+                    }
+                }
+            }
+        }
     }
 }
