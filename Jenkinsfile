@@ -29,15 +29,8 @@ pipeline {
     stage('Deploy') {
             steps {
                 echo 'Deploying models..'
-                script {
-                    
-                    sh "docker pull ${registry}:${BUILD_NUMBER}"
-
-                    
-                    dir('k8s/helm/txtsum') {
-                        sh 'helm upgrade --install txtsum .'
-                    }
-                }
+                echo 'Running a script to trigger pull and start a docker container'
             }
         }
     }
+}
