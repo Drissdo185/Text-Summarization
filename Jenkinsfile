@@ -31,7 +31,7 @@ pipeline {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     echo 'Running image to docker...'
-                    dockerImage.run('-p 30001:30000 -d --name txtsum')
+                    dockerImage.run('-p 30001:30000 -d --name txtsum_CICD')
                 }
             } 
         }
