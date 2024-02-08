@@ -26,6 +26,14 @@ pipeline {
                 }
             }  
         }
+        stage('Deploy'){
+            steps {
+                script {
+                    echo 'Deploying to Google Kubernetes Engine..'
+                }
+            }
+        }
+        /*
         stage('Deploy to Google Kubernetes Engine') {
             agent {
                 kubernetes {
@@ -43,6 +51,6 @@ pipeline {
                     }
                 }
             }
-        }        
+        }   */     
     }
 }
