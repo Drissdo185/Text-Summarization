@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-                    
+                    echo 'Running image to docker...'
                     dockerImage.run('-p 3001:3000 -d --name txtsum')
                 }
             } 
