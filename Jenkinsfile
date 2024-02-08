@@ -26,13 +26,23 @@ pipeline {
                 }
             }  
         }
-        stage('Deploy'){
+
+    stages {
+        stage('Deploy') {
             steps {
                 script {
-                    echo 'Deploying to Google Kubernetes Engine..'
+                    
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    
+                    echo 'Deploying'
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                        dockerImage.push('latest')
+                    }
                 }
-            }
+            }  
         }
+        
         /*
         stage('Deploy to Google Kubernetes Engine') {
             agent {
