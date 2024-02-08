@@ -31,11 +31,7 @@ pipeline {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     
-                    echo 'Deploy...'
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                        dockerImage.push('latest')
-                    }
+                    dockerImage.run('-p 3001:3000 -d --name txtsum')
                 }
             } 
         }
