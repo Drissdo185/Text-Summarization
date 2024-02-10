@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   jenkins:
-    image: txtsum/jenkins 
+    image: datdt/jenkins 
     container_name: jenkins
     restart: unless-stopped
     privileged: true

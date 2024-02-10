@@ -4,7 +4,7 @@ services:
   txt_summarizer:
     # The name will be displayed
     # in docker ps
-    container_name: textsummarization
+    container_name: app_1
     # Build the image from Dockerfile
     build:
       context: .
@@ -13,7 +13,7 @@ services:
     ports:
       - '30000:30000'
     # And set the image name
-    image: datdt185/textsummarization:v1.0.1
+    image: datdt185/app:v1.0.0
 
 
 
@@ -23,7 +23,7 @@ services:
   txt_summarizer_2:
     # The name will be displayed
     # in docker ps
-    container_name: textsummarization_2
+    container_name: app_2
     # Build the image from Dockerfile
     build:
       context: .
@@ -32,4 +32,4 @@ services:
     ports:
       - '30001:30000'
     # And set the image name
-    image: datdt185/textsummarization:v1.0.1
+    image: datdt185/app:v1.0.0

@@ -3,12 +3,11 @@ FROM python:3.11
 
 WORKDIR /app
 
+RUN mkdir /app/model
 
 COPY ./main.py /app
 
 COPY ./requirements.txt /app
-
-COPY ./k8s /app
 
 EXPOSE 30000
 

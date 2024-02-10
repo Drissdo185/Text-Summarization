@@ -1,5 +1,5 @@
 image:
-  repository: datdt185/text_summarization
+  repository: datdt185/app
   tag: "v1.0.1"
   pullPolicy: IfNotPresent
 
