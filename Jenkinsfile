@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment{
-        registry = 'datdt185/text_summarization'
+        registry = 'datdt185/app'
         registryCredential = 'dockerhub'      
     }
 
