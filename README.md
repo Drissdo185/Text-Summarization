@@ -12,7 +12,7 @@ After installing the required packages, you can run the demo by executing the fi
 
 The result will be displayed in the gradio interface, where you can input the text you want to summarize and get the summarized text as the output.
 
-![image](![alt text](<pic/demo with gradio.png>))
+![image alt text](<pic/demo with gradio.png>)
 
 ## Running in Docker
 To run the demo in a Docker container, you can build the Docker image using the following command:
@@ -25,9 +25,9 @@ After building the Docker image, you can run the Docker container using the foll
 docker run -p 30001:30000 name_image
 ```
 
-![image](![alt text](<pic/Run container app.png>))
+![image alt text](<pic/Run container app.png>)
 
 Model with deploy in FastAPI with localhost:30001/docs
 
-![image](![alt text](<pic/app run in container.png>))
+![image alt text](<pic/app run in container.png>)
 

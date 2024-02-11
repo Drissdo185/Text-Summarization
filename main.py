@@ -12,7 +12,10 @@ tokenizer.save_pretrained("model/")
 model.save_pretrained("model/")
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
 
-app = FastAPI()
+app = FastAPI(
+    root_path="/txtapp-service"
+)
+
 
 @app.get("/Text_Summarization")
 async def text_summarization(Text: Optional[str] = None):
