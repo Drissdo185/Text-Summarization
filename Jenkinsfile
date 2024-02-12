@@ -8,7 +8,7 @@ pipeline {
 
     environment{
         registry = 'datdt185/app'
-        registryCredential = 'dockerhub'      
+        DOCKERHUB_CREDENTIAL = credentials('dockerhub')     
     }
 
     stages {
@@ -19,10 +19,8 @@ pipeline {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     
                     echo 'Pushing image to dockerhub..'
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                        dockerImage.push('latest')
-                    }
+                    sh 'echo $DOCKERHUB_CREDENTIAL | docker login -u datdt185 --password-stdin'
+                    sh 'docker push ${registry}:$BUILD_NUMBER'
                 }
             }  
         }
