@@ -9,7 +9,7 @@ docker build -t  datdt/jenkisn . #replace any names you want
 docker compose -f docker-compose.yml -d up
 ```
   
-![image alt text](pic/demoCICD.png)
+![image alt text](/pic/DemoCICD.png)
 
 
 
