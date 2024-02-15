@@ -5,12 +5,12 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 # Initialize the summarizer
 
-checkpoint = "facebook/bart-large-cnn"
-tokenizer = AutoTokenizer.from_pretrained(checkpoint)
-model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
-tokenizer.save_pretrained("model/")
-model.save_pretrained("model/")
+model_dir = "model/"
+tokenizer = AutoTokenizer.from_pretrained(model_dir)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_dir)
+
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
+
 
 app = FastAPI(
     root_path="/txtapp-service"
