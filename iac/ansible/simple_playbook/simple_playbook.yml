@@ -1,0 +1,23 @@
+- name: Create Compute Engine instances
+  hosts: localhost
+  tasks:
+  - name: Bring up the first instance
+    gcp_compute_instance:
+      name: instance-1
+      machine_type: e2-standard-8
+      # Refer to https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts
+      # or use the command `gcloud compute images list --project=ubuntu-os-cloud`
+      zone: us-west4-b
+      project: mlops-414313
+      auth_kind: serviceaccount
+      service_account_file: ../secrets/mlops-414313-aec1bd57f93f.json
+      disks:
+        - auto_delete: true
+          boot: true
+          initialize_params:
+            source_image: projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20230727
+      # Default network for this instance
+      network_interfaces:
+        - network:
+            selfLink: global/networks/default
+      state: absent # change to absent to delete the instance
