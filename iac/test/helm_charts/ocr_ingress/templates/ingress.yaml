@@ -1,0 +1,27 @@
+# GCE does not support path rewriting sadly :(
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+  namespace: model-serving
+  # https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#controller_summary
+  annotations:
+    kubernetes.io/ingress.class: "gce" # which can be replaced by gce-internal, nginx or istio
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /docs
+        pathType: Prefix # https://cloud.google.com/kubernetes-engine/docs/how-to/load-balance-ingress#paths
+        backend:
+          service:
+            name: {{ .Release.Name }}
+            port:
+              number: 30000
+      - path: /openapi.json
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}
+            port:
+              number: 30000
