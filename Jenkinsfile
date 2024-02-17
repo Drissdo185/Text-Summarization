@@ -8,7 +8,7 @@ pipeline {
 
     environment{
         registry = 'datdt185/app'
-        registryCredential = 'dockerhub'    
+        registryCredential = 'dockerhub'
     }
 
     stages {
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building image for deployment..'
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     echo 'Pushing image to dockerhub..'
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push()
@@ -25,33 +25,25 @@ pipeline {
                 }
             }
         }
-        stage('Deploy'){
-            steps {
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-                    echo 'Running image to docker...'
-                    dockerImage.run('-p 30001:30000 -d --name txtsum_CICD')
-                }
-            } 
-        }
-        /*
-        stage('Deploy to Google Kubernetes Engine') {
+        stages {
+        stage('Deploy') {
             agent {
                 kubernetes {
                     containerTemplate {
-                        name 'gracious_mayer' // Name of the container to be used for helm upgrade
-                        image 'datdt185/helm' // The image containing helm
+                        name 'helm' // Name of the container to be used for helm upgrade
+                        image 'fullstackdatascience/jenkins-k8s:lts' // The image containing helm
+                        imagePullPolicy 'Always' // Always pull image in case of using the same tag
                     }
                 }
             }
             steps {
                 script {
                     container('helm') {
-                        sh("helm upgrade --install app --set image.repository=${registry} \
-                        --set image.tag=v1.${BUILD_NUMBER} ./k8s/helm_charts/txtsum_chart --namespace model-serving")
+                        sh("helm upgrade --install txtapp ./helm --namespace model-serving")
                     }
                 }
             }
-        }   */     
+        }
     }
+}
 }
