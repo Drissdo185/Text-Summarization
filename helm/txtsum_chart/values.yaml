@@ -1,0 +1,7 @@
+image:
+  repository: datdt185/app
+  tag: "v1.0.0"
+  pullPolicy: IfNotPresent
+
+env:
+  name: dev
