@@ -25,7 +25,6 @@ pipeline {
                 }
             }
         }
-        stages {
         stage('Deploy') {
             agent {
                 kubernetes {
@@ -45,5 +44,4 @@ pipeline {
             }
         }
     }
-}
 }
