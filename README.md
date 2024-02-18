@@ -109,6 +109,7 @@ More over use have to set the credentials for Docker Hub
 
 # Cloud
 ![image alt text](</images/Cloud.png>)
+## Deploying to GCP
 Now, we will deploy the model to the cloud using GCP. First, you need to create a project and enable the Compute Engine and Kubernetes Engine APIs. Then, you can deploy the model to GKE using the following command:
 
 * [Install gcloud CLI](https://cloud.google.com/sdk/docs/install#deb)
