@@ -41,7 +41,7 @@ Our project focuses on implementing text summarization using BART (Bidirectional
 
 
 # Local
-![image alt text](<images/Local.png>)
+![image alt text](<images/Local1.png>)
 ### Demo
 First, install the required packages by running the following command:\
 Python Version: 3.11.6
