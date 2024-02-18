@@ -1,7 +1,7 @@
-from fastapi import FastAPI
 from typing import Optional
-from transformers import pipeline
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
+from fastapi import FastAPI
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 
 # Initialize the summarizer
 
@@ -12,13 +12,11 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_dir)
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
 
 
-app = FastAPI(
-    root_path="/txtapp-service"
-)
+app = FastAPI(root_path="/txtapp-service")
 
 
 @app.get("/Text_Summarization")
-async def text_summarization(Text: Optional[str] = None):
+def text_summarization(Text: Optional[str] = None):
     results = {"Mlops": [{"Author": "DrissDo"}]}
     if Text:
         # Use the summarizer to summarize the text
